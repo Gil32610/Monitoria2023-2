@@ -18,10 +18,6 @@ int main()
     inputValues(nota2, tamanho);
     media(media1, nota1, nota2, tamanho);
     printArray(media1, tamanho);
-
-
-
-
     return 0;
 }
 
@@ -52,5 +48,18 @@ void  printArray (float array [], int size){
     for(int i = 0; i< size; i++){
     printf("valor na posição %d %f\n",i,array[i]);
     }
+
+
 }
+void situacao (int situacao[], float media[] , int size){
+
+    for(int i = 0; i<size; i++){
+        if(media[i]>= 7){
+            situacao[i] = 1;
+        }
+    }
+}
+
+
+
 

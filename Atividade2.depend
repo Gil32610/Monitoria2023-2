@@ -1,5 +1,10 @@
 # depslib dependency file v1.0
-1694452222 source:d:\study\c&c++\atividade2\main.c
+1694537111 source:d:\study\c&c++\atividade2\main.c
+	<stdlib.h>
+	<stdio.h>
+	<stdlib.h>
+
+1694537045 source:d:\study\c&c++\atividade2\lista3.c
 	<stdio.h>
 	<stdlib.h>
 
