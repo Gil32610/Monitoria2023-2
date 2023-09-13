@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-void inputValues(Numbers numbers, float key);
+void inputValues(Numbers numbers, float key, bool pair);
 void menu();
 
 typedef struct
@@ -16,8 +17,8 @@ int main()
 {
     Numbers par;
     printf("Informe o tamanho do vetor de Par:");
-    scanf("%d",&par.size);
-    par.maxCap = par.size; 
+    scanf("%d", &par.size);
+    par.maxCap = par.size;
 
     Numbers impar;
     printf("Informe o tamanho do vetor de Ímpar:");
@@ -27,17 +28,27 @@ int main()
     return 0;
 }
 
-void inputValues(Numbers numbers, float key)
+void inputValues(Numbers numbers, float key, bool pair)
 {
+    if (((int)key % 2 == 0) && !pair)
+    {
+        printf("Valor não impar\n");
+        return;
+    }
+    else if (!((int)key % 2 == 0) && pair)
+    {
+        printf("Valor não par");
+        return;
+    }
     if (numbers.size == numbers.capacity)
     {
         printf("VETOR CHEIO\n");
         return;
     }
-    if (busca(numbers,key) != -1)
+    if (busca(numbers, key) != -1)
     {
-       numbers.array[numbers.capacity] = key;
-       numbers.capacity++;
+        numbers.array[numbers.capacity] = key;
+        numbers.capacity++;
     }
 }
 
