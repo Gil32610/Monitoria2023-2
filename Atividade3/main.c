@@ -49,7 +49,11 @@ void inputValues(Numbers numbers, float key, bool pair)
     {
         numbers.array[numbers.capacity] = key;
         numbers.capacity++;
+        printf("Valor adicionado");
+        return;
     }
+    printf("Valor já existe");
+    
 }
 
 int busca(Numbers numbers, float key)
