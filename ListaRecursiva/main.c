@@ -8,7 +8,7 @@ int main()
 char sequence [] = "abcd";
 printf("%s\n", sequence);  
 int size = sizeof(sequence)/1;
-  printf("%d",size);
+printf("%d",size);
 reverseString(sequence,size);
 printf("%s\n", sequence);
     return 0;
