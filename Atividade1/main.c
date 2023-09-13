@@ -17,32 +17,30 @@ void repeatedPositions(int *p, int size)
     printf("Valor encontrado na posicao: ");
     for (int i = 0; i < size; i++)
     {
-        printf("\nIteracao: %d\n", i);
-        printf("valor no endereço apontado por ponteiro: %d\n", (p[i]));
         if (*(p + i) == 1)
         {
-            printf("%d%s", *(p + i), i != size - 1 ? ", " : ".\n");
+            printf("%d%s", i, i != size - 1 ? ", " : ".\n");
         }
     }
 }
 
 int *findPositions(int values[], int size, int key)
 {
-    int sequence[size];
+
+    int *p = malloc(sizeof(values));
     for (int i = 0; i < size; i++)
     {
 
         if (values[i] == key)
         {
             printf("valor encontrado em %d é %d \n", i, values[i]);
-            sequence[i] = 1;
+            p[i] = 1;
             continue;
         }
-        sequence[i] = 0;
     }
     for (int i = 0; i < size; i++)
     {
-        printf("valor no vetor repetido %d\n", sequence[i]);
+        printf("valor no vetor repetido %d\n", p[i]);
     }
-    return sequence;
+    return p;
 }
