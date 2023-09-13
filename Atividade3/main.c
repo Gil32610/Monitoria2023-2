@@ -1,50 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void inputValues(float values[], int size, int *capacity, float key);
+void inputValues(Numbers numbers, float key);
 void menu();
 
 typedef struct
 {
     float array[100];
     int maxCap;
-    int capacity, *pcapacity;
-} numbers;
+    int capacity;
+    int size;
+} Numbers;
 
 int main()
 {
-    printf("Informe o tamanho dos vetores:");
-    int size;
-    scanf("%d", &size);
-    float values[3];
-    int capacity1, capacity2, *pcapacity2, *pcapacity1;
-    int capacity1 = 0;
-    pcapacity1 = &capacity1;
-    inputValues(values, 3, pcapacity1, 10.0);
-    size = sizeof(values) / 4;
-    printArray(values, size);
+    Numbers par;
+    printf("Informe o tamanho do vetor de Par:");
+    scanf("%d",&par.size);
+    par.maxCap = par.size; 
+
+    Numbers impar;
+    printf("Informe o tamanho do vetor de Ímpar:");
+    scanf("%d", &impar.size);
+    impar.maxCap = impar.size;
+    menu();
     return 0;
 }
 
-void inputValues(float values[], int size, int *capacity, float key)
+void inputValues(Numbers numbers, float key)
 {
-    if (size == *capacity)
+    if (numbers.size == numbers.capacity)
     {
         printf("VETOR CHEIO\n");
         return;
     }
-    if (busca(size, values, key) != -1)
+    if (busca(numbers,key) != -1)
     {
-        values[*capacity] = key;
-        *capacity++;
+       numbers.array[numbers.capacity] = key;
+       numbers.capacity++;
     }
 }
 
-int busca(int size, float values[], int key)
+int busca(Numbers numbers, float key)
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < numbers.size; i++)
     {
-        if (values[i] == key)
+        if (numbers.array[i] == key)
         {
             return i;
         }
@@ -52,12 +53,11 @@ int busca(int size, float values[], int key)
     return -1;
 }
 
-void printArray(float array[], int size)
+void printArray(Numbers numbers)
 {
-
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < numbers.size; i++)
     {
-        printf("valor na posi��o %d %f\n", i, array[i]);
+        printf("valor no indice %d %f\n", i, numbers.array[i]);
     }
 }
 
