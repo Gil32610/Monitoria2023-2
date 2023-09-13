@@ -1,44 +1,88 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
+void inputValues(Numbers numbers, float key, bool pair);
+void menu();
 
-void inputValues(float values[], int size, int capacity, float key);
+typedef struct
+{
+    float array[100];
+    int maxCap;
+    int capacity;
+    int size;
+} Numbers;
 
-int main(){
-float values [3];
-inputValues(values,3,0,10.0);
-printArray(values);
+int main()
+{
+    Numbers par;
+    printf("Informe o tamanho do vetor de Par:");
+    scanf("%d", &par.size);
+    par.maxCap = par.size;
 
-return 0;
+    Numbers impar;
+    printf("Informe o tamanho do vetor de Ímpar:");
+    scanf("%d", &impar.size);
+    impar.maxCap = impar.size;
+    menu();
+    return 0;
 }
 
-void inputValues(float values[], int size, int capacity, float key)
+void inputValues(Numbers numbers, float key, bool pair)
 {
-    if(size == capacity){
+    if (((int)key % 2 == 0) && !pair)
+    {
+        printf("Valor não impar\n");
+        return;
+    }
+    else if (!((int)key % 2 == 0) && pair)
+    {
+        printf("Valor não par");
+        return;
+    }
+    if (numbers.size == numbers.capacity)
+    {
         printf("VETOR CHEIO\n");
         return;
     }
-    if(busca(size,values,key) !=-1){
-        values[capacity] = key;
+    if (busca(numbers, key) != -1)
+    {
+        numbers.array[numbers.capacity] = key;
+        numbers.capacity++;
+        printf("Valor adicionado");
+        return;
     }
-
+    printf("Valor já existe");
+    
 }
 
-int busca(int size, float values[], int key){
-    for(int i = 0; i<size; i++){
-        if(values[i] == key){
+int busca(Numbers numbers, float key)
+{
+    for (int i = 0; i < numbers.size; i++)
+    {
+        if (numbers.array[i] == key)
+        {
             return i;
         }
     }
     return -1;
-
 }
 
-void  printArray (float array [], int size){
-
-    for(int i = 0; i< size; i++){
-    printf("valor na posi��o %d %f\n",i,array[i]);
+void printArray(Numbers numbers)
+{
+    for (int i = 0; i < numbers.size; i++)
+    {
+        printf("valor no indice %d %f\n", i, numbers.array[i]);
     }
+}
 
-
+void menu()
+{
+    printf("1 - Inserir número par\n");
+    printf("2 - Inserir número impar");
+    printf("3 - Exibir capacidade do vetor ímpares\n");
+    printf("4 - Exibir capacidade do vetor pares\n");
+    printf("5 - Remover elemento do vetor de ímpares");
+    printf("6 - Remover elemento do vetor de pares\n");
+    printf("7 - Exibir elementos de ambos os vetores\n");
 }
