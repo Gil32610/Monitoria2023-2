@@ -6,16 +6,17 @@ void revertingString(char sequence [],int beginning, int last);
 int main()
 {
 char sequence [] = "abcd";
-printf("%s\n", sequence);
-int size = sizeof(sequence)/2;
+printf("%s\n", sequence);  
+int size = sizeof(sequence)/1;
+  printf("%d",size);
 reverseString(sequence,size);
 printf("%s\n", sequence);
     return 0;
 }
 
  void reverseString(char word[], int size){
-
-    revertingString( word,0,size);
+printf("%d", size);
+    revertingString( word,0,size-1);
 }
 
 
