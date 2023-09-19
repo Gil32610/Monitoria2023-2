@@ -1,19 +1,20 @@
 #include <stdio.h>
 #include <stdbool.h>
  int steps = 0;
+ bool isPrimeNumber(int n, int i);
 int main(){
 
     return 0;
 }
 
 
-bool primeNumber(int n, int i){
+bool isPrimeNumber(int n, int i){
 if(i== n || n<=2)
 return true;
 if(n%i== 0){
     return false;
 }
-return primeNumber(n,i+1);
+return isPrimeNumber(n,i+1);
 }
 
 int binarySearchWithSteps(int low,int mid,int high, int key, int*array){
