@@ -9,22 +9,22 @@ void setChar (int* word, int value);
 char* decrypt(int*word,int first, int last);
 int main()
 {
-    int row = 4;
-    int column = 5;
-    int matring[4][5] = {{4, 1, 8, 0, 5},
-                         {9, 9, 9, 3, 4},
-                         {3, 9, 1, 2, 7},
-                         {2, 3, 6, 5, 9,}};
-    int first = getFirst((int *)matring, 5);
-    int last = getLast((int*)matring,5);
-    printf("First is: %d\n", first);
-    printf("Last is: %d\n", last);
-    int* word = characters((int*)matring, 5);
-    char * decryption = decrypt(word,first,last);
-    printf("Decription result is: %s\n", decryption);
-    free(word);
-    free(decryption);
-    return 0;
+  int row = 4;
+  int column = 5;
+  int matring[4][5] = {{4, 1, 8, 0, 5},
+                       {9, 9, 9, 3, 4},
+                       {3, 9, 1, 2, 7},
+                       {2, 3, 6, 5, 9,}};
+  int first = getFirst((int *)matring, 5);
+  int last = getLast((int*)matring,5);
+  printf("First is: %d\n", first);
+  printf("Last is: %d\n", last);
+  int* word = characters((int*)matring, 5);
+  char *decryption = decrypt(word,first,last);
+  printf("Decription result is: %s\n", decryption);
+  free(word);
+  free(decryption);
+  return 0;
 }
 
 int getFirst(int *matringMatrix, int columns)
@@ -76,14 +76,15 @@ int* characters(int* matringMatrix,int columns){
     return word;
 
 }
-
 char * decrypt(int* word, int first, int last){
     char* decryption = (char*)malloc(sizeof(char)*4);
     char* firstPosition = decryption;
     for(int i =0; i<3;i++){
-        *(decryption++) = (char) (first*(word[i]) + last)%257; 
+        int charCode = (first*(word[i]) + last)%257;
+        *(decryption++) = (char)charCode ;
+        printf("Character is: %d\n", (first*(word[i]) + last)%257);
     }
-    *(++decryption) = '\0';
+    *(decryption) = '\0';
     decryption = firstPosition;
     return decryption;
 }
