@@ -15,7 +15,7 @@ printf("Insert a number: \n");
 scanf("%lf", &number);
 
 double squareRoot = calculateSquareRoot(number);
-printf("Square root of %lf is: %lf",number,squareRoot);
+printf("Square root of %.0lf is: %.4lf",number,squareRoot);
 
 
 }
@@ -28,13 +28,12 @@ return binarySearch(1,number,number);
 }
 
 double binarySearch(double low,double number,double high){
-    double mid = high+low/2;
+    double mid = (high+low)/2;
 
     double square = (mid*mid);
 
-    if(fabs(square) == number){
+    if(fabs(square - number) <= 0.001){
 
-        printf("the squere root of %lf is: %lf",number,mid);
         return mid;
     }
     else if(fabs(square) > number){
