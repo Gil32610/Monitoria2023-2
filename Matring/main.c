@@ -34,7 +34,7 @@ int getFirst(int *matringMatrix, int columns)
     {
         for (int j = 0; j < columns; j++)
         {
-            first += *((matringMatrix + j * 5) + i) * decimal;
+            first += matringMatrix [ (j * 5) + i] * decimal;
             decimal /= 10;
         }
     }
@@ -48,7 +48,7 @@ int getLast(int *matringMatrix, int columns)
     {
         for (int j = 0; j < columns; j++)
         {
-            last += *((matringMatrix + 4 + (j * 5)) + i) * decimal;
+            last += matringMatrix [ 4 + (j * 5) + i] * decimal;
             decimal /= 10;
             if (decimal <= 0)
                 break;
@@ -62,11 +62,11 @@ int* characters(int* matringMatrix,int columns){
     int mi =0;
     for(int i =1; i< 4;i++){
         for(int j = 0; j< columns-1;j++){
-          printf("Cell value is: %d\n",*((matringMatrix + (j * 5)) + i));
-          mi += *((matringMatrix + (j * 5)) + i) * decimal;
+          mi += matringMatrix [((j * 5)+ i)] * decimal;
             decimal/=10;
            if(decimal<=0) break;  
         }
+        
         printf("Mi value is: %d\n",mi);
         setChar(word,mi);
         decimal =1000;
@@ -82,7 +82,7 @@ char * decrypt(int* word, int first, int last){
     for(int i =0; i<3;i++){
         int charCode = (first*(word[i]) + last)%257;
         *(decryption++) = (char)charCode ;
-        printf("Character is: %d\n", (first*(word[i]) + last)%257);
+        printf("Character is: %c\n", (char)charCode);
     }
     *(decryption) = '\0';
     decryption = firstPosition;
